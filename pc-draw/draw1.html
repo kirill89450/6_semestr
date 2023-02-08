@@ -1,0 +1,69 @@
+<html>
+<head>
+  <style>
+    canvas {
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas" width="500" height="500"></canvas>
+  <br><br>
+  <select id="shape">
+    <option value="circle">Circle</option>
+    <option value="square">Square</option>
+    <option value="triangle">Triangle</option>
+  </select>
+  <button onclick="drawShape()">Draw Shape</button>
+  <script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+
+    function drawShape() {
+      const shape = document.getElementById("shape").value;
+      const x = Math.floor(Math.random() * canvas.width);
+      const y = Math.floor(Math.random() * canvas.height);
+      const color = getRandomColor();
+
+      if (shape === "circle") {
+        drawCircle(x, y, color);
+      } else if (shape === "square") {
+        drawSquare(x, y, color);
+      } else if (shape === "triangle") {
+        drawTriangle(x, y, color);
+      }
+    }
+
+    function drawCircle(x, y, color) {
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.arc(x, y, 50, 0, 2 * Math.PI);
+      ctx.fill();
+    }
+
+    function drawSquare(x, y, color) {
+      ctx.fillStyle = color;
+      ctx.fillRect(x, y, 100, 100);
+    }
+
+    function drawTriangle(x, y, color) {
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      ctx.lineTo(x + 100, y);
+      ctx.lineTo(x + 50, y - 50);
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    function getRandomColor() {
+      const letters = "0123456789ABCDEF";
+      let color = "#";
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      canvas {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas" width="500" height="500"></canvas>
+    <br />
+    <select id="shape-select">
+      <option value="circle">Circle</option>
+      <option value="square">Square</option>
+      <option value="triangle">Triangle</option>
+    </select>
+    <input type="color" id="color-input" />
+    <button id="draw-button">Draw</button>
+    <button id="remove-button">Remove</button>
+    <button id="rotate-button">Rotate</button>
+
+    <script>
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+      const shapeSelect = document.getElementById("shape-select");
+      const colorInput = document.getElementById("color-input");
+      const drawButton = document.getElementById("draw-button");
+      const removeButton = document.getElementById("remove-button");
+      const rotateButton = document.getElementById("rotate-button");
+
+      const shapes = [];
+      let selectedShapeIndex = -1;
+
+      drawButton.addEventListener("click", () => {
+        const shape = shapeSelect.value;
+        const color = colorInput.value;
+        let x, y, size;
+        let overlapping = true;
+        while (overlapping) {
+          x = canvas.width * Math.random();
+          y = canvas.height * Math.random();
+          size = Math.min(canvas.width, canvas.height) / 5 * Math.random();
+          overlapping = false;
+          for (const s of shapes) {
+            if (isOverlapping(s, x, y, size)) {
+              overlapping = true;
+              break;
+            }
+          }
+        }
+        shapes.push({ shape, color, x, y, size });
+        drawShapes();
+      });
+
+      removeButton.addEventListener("click", () => {
+        if (selectedShapeIndex !== -1) {
+          shapes.splice(selectedShapeIndex, 1);
+          selectedShapeIndex = -1;
+          drawShapes();
+        }
+      });
+
+      rotateButton.addEventListener("click", () => {
+        if (selectedShapeIndex !== -1) {
+          const s = shapes[selectedShapeIndex];
+          s.angle = (s.angle || 0) + Math.PI / 2;
+          drawShapes();
+        }
+      });
+
+      canvas.addEventListener("click", (event) => {
+          const x = event.clientX - canvas.offsetLeft;
+          const y = event.clientY - canvas.offsetTop;
+          for (let i = shapes.length - 1; i >= 0; i--) {
+            const s = shapes[i];
+            if (
+              x >= s.x - s.size &&
+              x <= s.x + s.size &&
+              y >= s.y - s.size &&
+              y <= s.y + s.size
+            ) {
+              selectedShapeIndex = i;
+              drawShapes();
+              break;
+            }
+          }
+        });
+
+        function isOverlapping(s1, x2, y2, size2) {
+          return (
+            x2 + size2 >= s1.x - s1.size &&
+            x2 - size2 <= s1.x + s1.size &&
+            y2 + size2 >= s1.y - s1.size &&
+            y2 - size2 <= s1.y + s1.size
+          );
+        }
+
+        function drawShapes() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          for (let i = 0; i < shapes.length; i++) {
+            const s = shapes[i];
+            ctx.save();
+            ctx.translate(s.x, s.y);
+            if (s.angle) {
+              ctx.rotate(s.angle);
+            }
+            ctx.fillStyle = s.color;
+            if (s.shape === "circle") {
+              ctx.beginPath();
+              ctx.arc(0, 0, s.size, 0, 2 * Math.PI);
+              ctx.fill();
+            } else if (s.shape === "square") {
+              ctx.fillRect(-s.size, -s.size, 2 * s.size, 2 * s.size);
+            } else if (s.shape === "triangle") {
+              ctx.beginPath();
+              ctx.moveTo(-s.size, s.size);
+              ctx.lineTo(0, -s.size);
+              ctx.lineTo(s.size, s.size);
+              ctx.closePath();
+              ctx.fill();
+            }
+            ctx.restore();
+            if (i === selectedShapeIndex) {
+              ctx.strokeRect(
+                s.x - s.size,
+                s.y - s.size,
+                2 * s.size,
+                2 * s.size
+              );
+            }
+          }
+        }
+      </script>
+  </body>
+</html>
