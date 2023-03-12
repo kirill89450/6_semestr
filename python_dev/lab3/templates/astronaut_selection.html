@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <title>astronaut_selection</title>
+    <style>
+   li {
+    list-style-type: none; /* Убираем маркеры */
+   }
+   ul {
+    margin-left: 0; /* Отступ слева в браузере IE и Opera */
+    padding-left: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
+   }
+  </style>
+</head>
+    <body class="d-flex h-100 text-center text-bg-dark">
+    
+        <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+          <header class="mb-auto">
+            <div>
+              <h3 class="float-md-start mb-0">Лабораторная №1</h3>
+              <nav class="nav nav-masthead justify-content-center float-md-end">
+                <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="#">Home</a>
+                <br><a class="nav-link"></a>
+                <a class="nav-link fw-bold py-1 px-0" href="#">Contact</a>
+              </nav>
+            </div>
+          </header>
+          
+          <main class="px-3">
+            <br>
+            <h1>Astronaut_selection страница</h1>
+            
+            <form  method="post">
+                <div>
+						
+                <ul>
+                <li>
+                    <label> Фамилия </label>
+                    <div>
+                    <input type="text"  maxlength="255" placeholder="Иван" name="last_name" id="last_name"> 
+                    </div> 
+                </li>
+                <br>	
+                <li>
+                    <label> Имя </label>
+                    <div>
+                    <input type="text" maxlength="30" placeholder="Иванов" name="first_name" id="first_name"> 
+                    </div> 
+                </li>		
+                <br>
+                <li>
+                    <label> Почта </label>
+                    <div>
+                    <input type="email" maxlength="50" placeholder="email@gmail.com" name="email" id="email"> 
+                    </div> 
+                </li>		
+                <br>
+                <li>
+                    <label> Профессия </label>
+                    <div>
+                    <select name="profession" id="profession"> 
+                    <option value="" selected="selected"></option>
+                    <option value="инженер исследователь">инженер исследователь</option>
+                    <option value="пилот">пилот</option>
+                    <option value="строитель">строитель</option>
+                    <option value="экзобиолог">экзобиолог</option>
+                    <option value="врач">врач</option>
+                    <option value="инженер по терраформированию">инженер по терраформированию</option>
+                    <option value="климатолог">климатолог</option>
+                    <option value="специалист по радиационной защите">специалист по радиационной защите</option>
+                    <option value="астрогеолог">астрогеолог</option>
+                    <option value="гляциолог">гляциолог</option>
+                    <option value="инженер жизнеобеспечения">инженер жизнеобеспечения</option>
+                    <option value="метеоролог">метеоролог</option>
+                    <option value="оператор марсохода">оператор марсохода</option>
+                    <option value="киберинженер">киберинженер</option>
+                    <option value="штурман">штурман</option>
+                    <option value="пилот дронов">пилот дронов</option>
+
+                    </select>
+                    </div> 
+                </li>
+                <br>
+                <li>
+                    <label> Пол </label>
+                    <span>
+                    <input type="radio" value="male" name="gender" id="gender">
+                    <label> Муж</label>
+                    <input type="radio" value="famale" name="gender" id="gender">
+                    <label> Жен</label>
+                    </span> 
+                </li>
+                <br>
+                <li>
+                    <label> Мотивация </label>
+                    <div>
+                    <input type="text" maxlength="255" placeholder="Мотивация" name="motivation" id="motivation"> 
+                    </div> 
+                </li>		
+                <br>
+                <li>
+                    <label> Готовы ли остаться на Марсе? </label>
+                    <span>
+                    <input type="radio" value='да' name="in_mars" id="in_mars">
+                    <label"> Да</label>
+                    <input type="radio" value='нет' name="in_mars" id="in_mars">
+                    <label> Нет</label>
+                    </span> 
+                </li>
+                <br>
+                    <input id="saveForm" class="button_text" type="submit" name="submit" value="Отправить">
+                </ul>
+            </form>
+            <br>
+            
+            
+            
+           
+          </main>
+        
+          <footer class="mt-auto text-white-50">
+            <p>Лабораторная <a href="#" class="text-white">Шевелева Кирилла</a>, by <a href=https://github.com/kirill89450" class="text-white">@kirill89450</a>.</p>
+          </footer>
+        </div>
+        
+        
+            
+          
+        
+        <div class="mallbery-caa" style="z-index: 2147483647 !important; text-transform: none !important; position: fixed;"></div><div class="mallbery-caa" style="z-index: 2147483647 !important; text-transform: none !important; position: fixed;"></div><div class="mallbery-caa" style="z-index: 2147483647 !important; text-transform: none !important; position: fixed;"></div>
+    </body>
+</html>
